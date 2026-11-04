@@ -1,55 +1,53 @@
 @extends('layout')
+@section('title', 'Home')
 
 @section('content')
-<section class="hero">
-    <div class="eyebrow">INTERACTIVE TYPING PLATFORM / 2026</div>
+    <section class="hero-resend">
+        <div class="hero-bg-glow"></div>
 
-    <h1>
-        MAKE EVERY<br>
-        <em>KEYSTROKE</em> COUNT.
-    </h1>
+        <div class="hero-left">
+            <div class="hero-badge">Typewud</div>
 
-    <p>
-        Latih kecepatan dan akurasi mengetik. Pantau progresmu,
-        bersaing secara sehat, atau tantang teman dalam duel santai.
-    </p>
+            <h1 class="hero-title">
+                Typing for<br>
+                developers
+            </h1>
 
-    <div class="actions">
-        <a class="btn" href="/typing-test">Start Typing ↗</a>
-        <a class="btn outline" href="/login">Login</a>
-        <a class="btn outline" href="/leaderboard">Explore Leaderboard</a>
+            <p class="hero-desc">
+                The best way to improve your typing speed, accuracy,
+                and consistency. Practice, track your progress, and
+                enjoy friendly duels with your friends.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="/typing-test" class="hero-btn hero-btn-primary">Get Started</a>
+                <a href="/leaderboard" class="hero-btn hero-btn-ghost">Leaderboard</a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+    <div class="hero-model-wrap">
+            <model-viewer
+                src="{{ asset('models/typewud-keyboard.glb') }}"
+                alt="Typewud 3D Mechanical Keyboard"
+                auto-rotate
+                auto-rotate-delay="1000"
+                rotation-per-second="15deg"
+                camera-controls
+                disable-pan
+                shadow-intensity="1"
+                exposure="1.2"
+                interaction-prompt="none"
+                class="keyboard-model">
+            </model-viewer>
+        </div>
     </div>
-</section>
+    </section>
 
-<section class="cards">
-    <article class="card">
-        <span class="number">01 /</span>
-        <h2>Typing Test</h2>
-        <p>
-            Easy hingga Expert, Time dan Words Mode,
-            dengan hasil WPM dan accuracy.
-        </p>
-        <a href="/typing-test">Try now ↗</a>
-    </article>
-
-    <article class="card">
-        <span class="number">02 /</span>
-        <h2>Track Progress</h2>
-        <p>
-            Riwayat tes, personal best, dan target mengetik
-            untuk akun member.
-        </p>
-        <a href="/dashboard">My dashboard ↗</a>
-    </article>
-
-    <article class="card">
-        <span class="number">03 /</span>
-        <h2>Friendly Duel</h2>
-        <p>
-            Buat room pribadi, undang teman, dan adu kecepatan.
-            Tanpa ranking duel.
-        </p>
-        <a href="/duel">Challenge friend ↗</a>
-    </article>
-</section>
+    <div class="hero-bottom-cta">
+        <a href="/typing-test" class="see-similar-btn">
+            Start typing
+            <span>↓</span>
+        </a>
+    </div>
 @endsection

@@ -1,1 +1,80 @@
-@extends('layout') @section('title','Leaderboard') @section('content')<section class="pagehead"><div class="eyebrow">GLOBAL RANKINGS</div><h1>Leaderboard.</h1><p>Hasil tes individu. Friendly Duel dan Practice tidak dihitung.</p></section><form class="panel filters" method="get"><label>Mode<select name="mode"><option value="">All</option>@foreach(['time'=>'Time','words'=>'Words'] as $v=>$label)<option value="{{$v}}" @selected(request('mode')===$v)>{{$label}}</option>@endforeach</select></label><label>Difficulty<select name="difficulty"><option value="">All</option>@foreach(['easy','normal','hard','expert'] as $v)<option @selected(request('difficulty')===$v)>{{$v}}</option>@endforeach</select></label><label>Language<select name="language"><option value="">All</option><option value="en" @selected(request('language')==='en')>English</option><option value="id" @selected(request('language')==='id')>Indonesia</option></select></label><label>Ranking<select name="sort"><option value="wpm">WPM</option><option value="accuracy" @selected(request('sort')==='accuracy')>Accuracy</option><option value="correct_words" @selected(request('sort')==='correct_words')>Words</option></select></label><button class="btn">Apply</button></form><div class="panel tablewrap"><table><thead><tr><th>#</th><th>Player</th><th>Difficulty</th><th>Mode</th><th>WPM</th><th>Accuracy</th></tr></thead><tbody>@forelse($results as $result)<tr><td>{{$loop->iteration}}</td><td>{{$result->user->name}}</td><td>{{ucfirst($result->difficulty)}}</td><td>{{$result->mode}}</td><td><strong>{{$result->wpm}}</strong></td><td>{{$result->accuracy}}%</td></tr>@empty<tr><td colspan="6">Belum ada hasil kompetitif. Jadi yang pertama!</td></tr>@endforelse</tbody></table></div>@endsection
+@extends('layout')
+@section('title','Leaderboard')
+@section('content')
+    <section class="pagehead">
+        <div class="eyebrow">GLOBAL RANKINGS</div>
+        <h1>Leaderboard.</h1>
+        <p>Hasil tes individu. Friendly Duel dan Practice tidak dihitung.</p>
+    </section>
+    <form class="panel filters" method="get">
+        <label>
+            Mode
+            <select name="mode">
+                <option value="">All</option>
+                @foreach(['time'=>'Time','words'=>'Words'] as $v=>$label)
+                    <option value="{{$v}}" @selected(request('mode')===$v)>{{$label}}</option>
+                @endforeach
+            </select>
+        </label>
+        <label>
+            Difficulty
+            <select name="difficulty">
+                <option value="">All</option>
+                @foreach(['easy','normal','hard','expert'] as $v)
+                    <option @selected(request('difficulty')===$v)>{{$v}}</option>
+                @endforeach
+            </select>
+        </label>
+        <label>
+            Language
+            <select name="language">
+                <option value="">All</option>
+                <option value="en" @selected(request('language')==='en')>English</option>
+                <option value="id" @selected(request('language')==='id')>Indonesia</option>
+            </select>
+        </label>
+        <label>
+            Ranking
+            <select name="sort">
+                <option value="wpm">WPM</option>
+                <option value="accuracy" @selected(request('sort')==='accuracy')>Accuracy</option>
+                <option value="correct_words" @selected(request('sort')==='correct_words')>Words</option>
+            </select>
+        </label>
+        <button class="btn">Apply</button>
+    </form>
+    <div class="panel tablewrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Player</th>
+                    <th>Difficulty</th>
+                    <th>Mode</th>
+                    <th>WPM</th>
+                    <th>Accuracy</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($results as $result)
+                    <tr>
+                        <td>{{$loop->iteration}}</td>
+                        <td>
+                            {{$result->user->name}}
+                        </td>
+                        <td>{{ucfirst($result->difficulty)}}</td>
+                        <td>{{$result->mode}}</td>
+                        <td>
+                            <strong>{{$result->wpm}}</strong>
+                        </td>
+                        <td>{{$result->accuracy}}%</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">Belum ada hasil kompetitif. Jadi yang pertama!</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection
